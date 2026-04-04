@@ -1,0 +1,49 @@
+# Operating System Files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor/IDE Files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+.sass-cache/
+*.swp
+*.swo
+*~
+
+# Log Files
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Temporary Files
+tmp/
+temp/
+*.tmp
+*.bak
+*.old
+
+# Build Outputs (if any)
+dist/
+build/
+node_modules/
+
+# Environment Variables
+.env
+.env.local
+.env.*.local
+
+# XAMPP specific (optional - keep if you want to track config)
+# htdocs/
+# apache/
+# mysql/
+
+# Documentation (uncomment if you don't want these in repo)
+# TESTING_GUIDE.md
+# PROJECT_SUMMARY.md
+# QUICK_START.md
+# IMAGE_INTEGRATION_COMPLETE.md
+# PROJECT_DOCUMENTATION.txt
