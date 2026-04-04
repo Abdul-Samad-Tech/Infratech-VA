@@ -380,6 +380,98 @@ button:focus-visible {
 }
 
 /* ========================================
+   Scroll Progress Bar
+======================================== */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #FFD700, #4B246C);
+  width: 0%;
+  z-index: 9999;
+  transition: width 0.1s ease;
+}
+
+/* ========================================
+   Dynamic Animations
+======================================== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.animate-pulse {
+  animation: pulse 2s infinite;
+}
+
+.animate-slide-in-left {
+  animation: slideInLeft 0.6s ease-out forwards;
+}
+
+/* ========================================
+   Enhanced Hover Effects
+======================================== */
+.hand-drawn-frame img:hover,
+.hand-drawn-square img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 15px 40px rgba(45, 27, 68, 0.3);
+}
+
+/* ========================================
+   Counter Animation Styles
+======================================== */
+.counter {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #4B246C;
+  display: inline-block;
+}
+
+/* ========================================
+   Typing Effect Cursor
+======================================== */
+.typing-cursor::after {
+  content: '|';
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+/* ========================================
    Custom Scrollbar
 ======================================== */
 ::-webkit-scrollbar {

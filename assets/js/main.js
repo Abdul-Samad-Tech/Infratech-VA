@@ -68,20 +68,92 @@ $(document).ready(function() {
     });
     
     // ========================================
-    // Search Bar Focus Effect
+    // Dynamic Counter Animation for Stats
     // ========================================
-    $('.search-input').on('focus', function() {
-        $(this).closest('.floating-search-bar').css({
-            'transform': 'scale(1.02)',
-            'box-shadow': '0 15px 50px rgba(45, 27, 68, 0.25), 0 6px 16px rgba(45, 27, 68, 0.2)'
+    function animateCounter(element, target, duration = 2000) {
+        let start = 0;
+        const increment = target / (duration / 16);
+        
+        const timer = setInterval(() => {
+            start += increment;
+            if (start >= target) {
+                element.textContent = target;
+                clearInterval(timer);
+            } else {
+                element.textContent = Math.floor(start);
+            }
+        }, 16);
+    }
+    
+    // Add counters when sections come into view
+    const observerCallback = (entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !entry.target.classList.contains('counted')) {
+                entry.target.classList.add('counted');
+                const counters = entry.target.querySelectorAll('.counter');
+                counters.forEach(counter => {
+                    const target = parseInt(counter.getAttribute('data-target'));
+                    animateCounter(counter, target);
+                });
+            }
         });
+    };
+    
+    const sectionObserver = new IntersectionObserver(observerCallback, { threshold: 0.3 });
+    document.querySelectorAll('section').forEach(section => {
+        sectionObserver.observe(section);
     });
     
-    $('.search-input').on('blur', function() {
-        $(this).closest('.floating-search-bar').css({
-            'transform': 'scale(1)',
-            'box-shadow': ''
-        });
+    // ========================================
+    // Dynamic Typing Effect for Hero Section
+    // ========================================
+    const heroTitle = document.querySelector('#hero h1');
+    if (heroTitle) {
+        const originalText = heroTitle.textContent;
+        heroTitle.textContent = '';
+        let i = 0;
+        
+        function typeWriter() {
+            if (i < originalText.length) {
+                heroTitle.textContent += originalText.charAt(i);
+                i++;
+                setTimeout(typeWriter, 100);
+            }
+        }
+        
+        // Start typing effect after page loads
+        setTimeout(typeWriter, 500);
+    }
+    
+    // ========================================
+    // Smooth Image Hover Effects
+    // ========================================
+    $('.hand-drawn-frame img, .hand-drawn-square img').hover(
+        function() {
+            $(this).css({
+                'transform': 'scale(1.05)',
+                'transition': 'transform 0.3s ease'
+            });
+        },
+        function() {
+            $(this).css({
+                'transform': 'scale(1)',
+                'transition': 'transform 0.3s ease'
+            });
+        }
+    );
+    
+    // ========================================
+    // Dynamic Scroll Progress Bar
+    // ========================================
+    const progressBar = $('<div class="scroll-progress"></div>');
+    $('body').append(progressBar);
+    
+    $(window).on('scroll', function() {
+        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+        progressBar.css('width', scrolled + '%');
     });
     
     // ========================================
