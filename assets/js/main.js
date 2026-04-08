@@ -247,6 +247,47 @@ $(document).ready(function() {
     }
     
     // ========================================
+    // Contact Form Submission Handler
+    // ========================================
+    $('#contactForm').on('submit', function(e) {
+        e.preventDefault();
+        
+        // Get form values
+        var name = $('#name').val().trim();
+        var email = $('#email').val().trim();
+        var phone = $('#phone').val().trim();
+        var message = $('#message').val().trim();
+        
+        // Validate all fields are filled
+        if (!name || !email || !phone || !message) {
+            alert('Please fill in all required fields.');
+            return;
+        }
+        
+        // Validate email format
+        if (!validateEmail(email)) {
+            alert('Please enter a valid email address.');
+            return;
+        }
+        
+        // Show success message
+        $('#successMessage').removeClass('hidden');
+        
+        // Reset form
+        this.reset();
+        
+        // Hide success message after 5 seconds
+        setTimeout(function() {
+            $('#successMessage').addClass('hidden');
+        }, 5000);
+        
+        // Scroll to success message
+        $('html, body').animate({
+            scrollTop: $('#successMessage').offset().top - 100
+        }, 500);
+    });
+    
+    // ========================================
     // Console Branding
     // ========================================
     console.log('%cInfraTech VA', 'font-size: 24px; font-weight: bold; color: #4B246C;');
