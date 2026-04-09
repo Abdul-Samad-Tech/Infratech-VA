@@ -606,3 +606,26 @@ button:focus-visible {
   animation: float-delayed 3.5s ease-in-out infinite;
   animation-delay: 0.5s;
 }
+
+/* ========================================
+   Animated Icon Bounce for Contact Cards
+======================================== */
+@keyframes iconBounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-icon-bounce {
+  animation: iconBounce 2s ease-in-out infinite;
+}
+
+/* ========================================
+   Contact Card Icon Hover Effects
+======================================== */
+.hand-drawn-square .group:hover .animate-icon-bounce {
+  animation-play-state: paused;
+}
